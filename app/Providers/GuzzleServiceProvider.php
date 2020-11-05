@@ -4,7 +4,7 @@ use Illuminate\Support\ServiceProvider;
 use GuzzleHttp\Client;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
 
-class GuzzleProvider extends ServiceProvider {
+class GuzzleServiceProvider extends ServiceProvider {
 
     /**
      * Bootstrap the application services.

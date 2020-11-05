@@ -162,7 +162,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-        App\Providers\GuzzleProvider::class,
+        App\Providers\GuzzleServiceProvider::class,
+        App\Providers\PunkApiServiceProvider::class,
 
         /*
          * Package Service Providers...
