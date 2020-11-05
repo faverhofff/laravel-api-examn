@@ -4,8 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\SearchStringAPIRequest;
 use App\Http\Controllers\AppBaseController;
+use App\Services\PunkApiService;
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
 use Response;
 
 /**
@@ -15,12 +15,12 @@ use Response;
 
 class SearchStringAPIController extends AppBaseController
 {
-    /** @var  Guzzle Client */
-    private $client;
+    /** @var  Punk Api Service */
+    private $apiService;
 
-    public function __construct(Client $client)
+    public function __construct(PunkApiService $apiService)
     {
-        $this->client = $client;
+        $this->apiService = $apiService;
     }
 
     /**
@@ -31,8 +31,10 @@ class SearchStringAPIController extends AppBaseController
      * @return Response
      */
     public function index(SearchStringAPIRequest $request)
-    {
-        return $this->sendResponse([], '');
+    {   
+        $response = $this->apiService->searchByWord($request->word);
+        
+        return $this->send($response->getBodyContent(), $response->getCode());
     }
     
 }
