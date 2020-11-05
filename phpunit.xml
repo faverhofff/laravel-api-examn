@@ -10,7 +10,7 @@
         <testsuite name="Feature">
         </testsuite>
         <testsuite name="APIs">
-            <directory suffix="SearchStringApiTest.php">./tests/APIs</directory>
+            <directory suffix="SearchByWordApiTest.php">./tests/APIs</directory>
         </testsuite>
     </testsuites>
     <filter>
