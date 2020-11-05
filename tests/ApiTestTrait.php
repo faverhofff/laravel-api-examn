@@ -9,7 +9,6 @@ trait ApiTestTrait
 
         $response = json_decode($this->response->getContent(), true);
         $responseData = $response['data'];
-
         $this->assertModelData($actualData, $responseData);
     }
 

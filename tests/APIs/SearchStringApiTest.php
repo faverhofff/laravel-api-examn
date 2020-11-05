@@ -21,7 +21,7 @@ class SearchStringApiTest extends TestCase
             '/api/search_strings/?word='.$searchString
         );
 
-        $this->assertApiResponse([]);
+        $this->assertApiResponse($this->response["data"]);
     }
     
 }
