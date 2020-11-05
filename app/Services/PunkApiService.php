@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Response;
 use App\Models\PunkApiResponse;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,13 +22,30 @@ class PunkApiService {
      * this performs a fuzzy match, if you need to add spaces 
      * just add an underscore (_).
      */
-    public function searchByWord(string $word = null)
+    public function searchBeersByWord(string $word = null): PunkApiResponse
     {
-        $url = env("PUNKAPI_URL") . '?food='. $word;
-
-        $response = $this->guzzleClient->request('GET', $url);
+        $response = $this->invokeCall('GET', '?food='. $word);
         
         return new PunkApiResponse(intval($response->getStatusCode()), $response->getBody());
     }
 
+    /**
+     * Returns all beers matching the supplied ID
+     */
+    public function getBeerById(int $id): PunkApiResponse
+    {
+        $response = $this->invokeCall('GET', '?ids='. $id);
+
+        return new PunkApiResponse(intval($response->getStatusCode()), $response->getBody());
+    }
+
+    /**
+     * Common endpoint call
+     */
+    private function invokeCall(string $method, string $urlParameters): Response
+    {
+        $url = env("PUNKAPI_URL") . $urlParameters;
+
+        return $this->guzzleClient->request($method, $url);
+    }
 }
