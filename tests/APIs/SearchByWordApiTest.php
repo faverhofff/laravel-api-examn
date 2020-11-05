@@ -5,20 +5,33 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Tests\ApiTestTrait;
 
-class SearchStringApiTest extends TestCase
+class SearchByApiTest extends TestCase
 {
     use ApiTestTrait, WithoutMiddleware, DatabaseTransactions;
 
     /**
-     * @test
+     * @test search beer by match string
      */
-    public function test_read_search_string()
+    public function test_search_by_string()
     {
         $searchString = "food";
 
         $this->response = $this->json(
             'GET',
-            '/api/search_strings/?word='.$searchString
+            '/api/search/'.$searchString
+        );
+
+        $this->assertApiResponse($this->response["data"]);
+    }
+
+    /**
+     * @test search beer by id
+     */
+    public function test_search_by_id()
+    {
+        $this->response = $this->json(
+            'GET',
+            '/api/get/id/=1'
         );
 
         $this->assertApiResponse($this->response["data"]);

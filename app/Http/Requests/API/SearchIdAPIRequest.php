@@ -4,7 +4,7 @@ namespace App\Http\Requests\API;
 
 use App\Http\Requests\BaseAPIRequest;
 
-class SearchStringAPIRequest extends BaseAPIRequest
+class SearchIdAPIRequest extends BaseAPIRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,14 @@ class SearchStringAPIRequest extends BaseAPIRequest
     public function rules()
     {
         return [
-            "word" => "required"
+            "id" => "required|numeric"
         ];
     }
 
     public function all($keys = null) 
     {
         $data = parent::all($keys);
-        $data['word'] = $this->route('word');
+        $data['id'] = $this->route('id');
         return $data;
     }
 }

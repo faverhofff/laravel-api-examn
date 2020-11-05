@@ -18,5 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::get('search_strings', 'SearchStringAPIController@index');
+Route::get('search/{word}', 'SearchBeerAPIController@searchByPhrase');
+Route::get('get/id/{id}', 'SearchBeerAPIController@searchById');
