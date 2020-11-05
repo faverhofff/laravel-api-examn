@@ -163,7 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         App\Providers\GuzzleServiceProvider::class,
-        App\Providers\PunkApiServiceProvider::class,
+        App\Providers\DomainServiceProvider::class,
 
         /*
          * Package Service Providers...

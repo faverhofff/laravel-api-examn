@@ -41,8 +41,8 @@ class PunkApiResponse
     /***
      * 
      */
-    public function getBodyContent()
+    public function getArrayModel(): iterable
     {
-        return json_decode($this->bodyContent);
+        return json_decode($this->bodyContent, true);
     }
 }
