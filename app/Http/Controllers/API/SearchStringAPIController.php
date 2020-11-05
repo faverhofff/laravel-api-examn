@@ -25,6 +25,7 @@ class SearchStringAPIController extends AppBaseController
      */
     public function index(SearchStringAPIRequest $request)
     {
+         return $this->sendResponse([], '');
     }
     
 }
