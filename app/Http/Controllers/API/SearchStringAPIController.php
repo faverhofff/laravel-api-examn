@@ -15,6 +15,13 @@ use Response;
 
 class SearchStringAPIController extends AppBaseController
 {
+    /** @var  Guzzle Client */
+    private $client;
+
+    public function __construct(Client $client)
+    {
+        $this->client = $client;
+    }
 
     /**
      * Display result of the word search.
@@ -25,7 +32,7 @@ class SearchStringAPIController extends AppBaseController
      */
     public function index(SearchStringAPIRequest $request)
     {
-         return $this->sendResponse([], '');
+        return $this->sendResponse([], '');
     }
     
 }
