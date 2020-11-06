@@ -4,7 +4,8 @@ use Illuminate\Support\ServiceProvider;
 use \GuzzleHttp\Client;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
 
-class DomainServiceProvider extends ServiceProvider {
+class DomainServiceProvider extends ServiceProvider
+{
 
     /**
      * Bootstrap the application services.
@@ -24,13 +25,17 @@ class DomainServiceProvider extends ServiceProvider {
     public function register()
     {
         //
-        $this->app->bind('PunkApiService', function () {
-            return new PunkApiService(new \GuzzleHttp\Client());
-        });
+        $this->app->bind(
+            'PunkApiService', function () {
+                return new PunkApiService(new \GuzzleHttp\Client());
+            }
+        );
 
-        $this->app->bind('FilterProductService', function () {
-            return new FilterProductService();
-        });
+        $this->app->bind(
+            'FilterProductService', function () {
+                return new FilterProductService();
+            }
+        );
     }
 
 }
