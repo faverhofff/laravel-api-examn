@@ -1,14 +1,5 @@
 <?php
 
-/**
- * PHP version 7
- * 
- * @category Exam
- * @package  App_Http_Controllers_API
- * @author   Frank A.R <festgarcia2018@gmail.com.com>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://localhost/
- */
 namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\SearchStringAPIRequest;
