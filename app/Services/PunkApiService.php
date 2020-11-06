@@ -7,9 +7,13 @@ use GuzzleHttp\Psr7\Response;
 use App\Models\PunkApiResponse;
 use Illuminate\Support\ServiceProvider;
 
-class PunkApiService { 
-
-    /** @var Guzzle Client */
+class PunkApiService
+{
+    /**
+     * 
+     *
+     * @var Guzzle Client 
+     */
     private $guzzleClient;
 
     public function __construct(Client $client)
@@ -18,7 +22,7 @@ class PunkApiService {
     }
     
     /**
-     * 	Returns all beers matching the supplied food string, 
+     *     Returns all beers matching the supplied food string, 
      * this performs a fuzzy match, if you need to add spaces 
      * just add an underscore (_).
      */
