@@ -14,6 +14,7 @@ class SearchByApiTest extends TestCase
      */
     public function test_search_by_string()
     {
+        $searchString = "aa";
         $this->response = $this->json(
             'GET',
             '/api/search/'.$searchString
