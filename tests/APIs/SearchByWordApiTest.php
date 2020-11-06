@@ -31,7 +31,7 @@ class SearchByApiTest extends TestCase
     {
         $this->response = $this->json(
             'GET',
-            '/api/get/id/=1'
+            '/api/get/id/1'
         );
 
         $this->assertApiResponse($this->response["data"]);
