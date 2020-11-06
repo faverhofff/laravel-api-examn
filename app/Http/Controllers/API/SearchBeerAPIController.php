@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * PHP version 7
+ * 
+ * @category Exam
+ * @package  App_Http_Controllers_API
+ * @author   Frank A.R <festgarcia2018@gmail.com.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://localhost/
+ */
 namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\SearchStringAPIRequest;
@@ -11,52 +20,115 @@ use Illuminate\Http\Request;
 use Response;
 
 /**
- * Class SearchStringController
- * @package App\Http\Controllers\API
+ * @OA\get(
+ * path="/api/search/{word}",
+ * summary="Search by word",
+ * description="Search beer that match with word",
+ * operationId="search",
+ * tags={"search"},
+ *      @OA\Parameter(
+ *          name="word",
+ *          in="path",
+ *          required=true, 
+ *      ),* 
+ * @OA\Response(
+ *    response=422,
+ *    description="Invalid phrase",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="")
+ *        )
+ *     )
+ * )
+ * 
+ * @OA\get(
+ * path="/api/get/id/{id}",
+ * summary="Get beer by id",
+ * description="Search beer that match with id request",
+ * operationId="search",
+ * tags={"search"},
+ *      @OA\Parameter(
+ *          name="id",
+ *          in="path",
+ *          required=true, 
+ *      ),* 
+ * @OA\Response(
+ *    response=422,
+ *    description="Invalid id",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="sucess", type="boolean", example="false") ,
+ *       @OA\Property(property="message", type="string", example="{ id: [The id must be a number.] }") 
+ *        )
+ *     )
+ * )
  */
 
+/**
+ * SearchBeerAPIController: endpoint to access Punk api
+ *
+ * @category Exam
+ * @package  App_Http_Controllers_API
+ * @author   Frank A.R <festgarcia2018@gmail.com.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://localhost/
+ */
 class SearchBeerAPIController extends AppBaseController
 {
-    /** @var  Punk Api Service */
-    private $apiService;
+    /**
+     * Instance to PunkApiServer class
+     *
+     * @var Punk Api Service 
+     */
+    private $_apiService;
 
-    /** @var  Filter Service */
-    private $filterService;
+    /**
+     * Instance to FilterProductService class
+     *
+     * @var Filter Service 
+     */
+    private $_filterService;
 
+    /**
+     * Constructor class
+     *
+     * @param PunkApiService $apiService Instance of PunkApiServer class
+     * @param FilterProductService $filterService Instance of FilterProductService class
+     */
     public function __construct(PunkApiService $apiService, FilterProductService $filterService)
     {
-        $this->apiService = $apiService;
-        $this->filterService = $filterService;
+        $this->_apiService = $apiService;
+        $this->_filterService = $filterService;
     }
 
     /**
-     * Display results of the word search.
-     * GET|HEAD /search/match/{word}
+     * Display beer results according to word search.
+     * GET|HEAD /search/{word}
      *
-     * @param Request $request
+     * @param  SearchStringAPIRequest $request Request validation 
      * @return Response
      */
     public function searchByPhrase(SearchStringAPIRequest $request)
     {   
-        $response = $this->apiService->searchBeersByWord($request->word);
+        $response = $this->_apiService->searchBeersByWord($request->word);
 
-        $filteredResult = $this->filterService->getSummary($response->getArrayModel());
+        $filteredResult = $this->_filterService
+            ->getSummary($response->getArrayModel());
 
         return $this->send($filteredResult, $response->getCode());
     }
     
     /**
-     * Display result of id search.
+     * Display beer result by id search
      * GET|HEAD /get/id/{id}
      *
-     * @param Request $request
-     * @return Response
+     * @param  SearchIdAPIRequest $request Request validation  
+     * @return Response 
      */
     public function searchById(SearchIdAPIRequest $request)
     {   
-        $response = $this->apiService->getBeerById($request->id);
+        $response = $this->_apiService->getBeerById($request->id);
         
-        $filteredResult = $this->filterService->getDetail($response->getArrayModel());
+        $filteredResult = $this->_filterService
+            ->getDetail($response->getArrayModel());
 
         return $this->send($filteredResult, $response->getCode());
     }
