@@ -22,9 +22,12 @@ class PunkApiService
     }
     
     /**
-     *     Returns all beers matching the supplied food string, 
+     * Returns all beers matching the supplied food string, 
      * this performs a fuzzy match, if you need to add spaces 
      * just add an underscore (_).
+     * 
+     * @param string $word Prhase to search in the Punk Api
+     * @return PunkApiResponse
      */
     public function searchBeersByWord(string $word = null): PunkApiResponse
     {
@@ -35,6 +38,9 @@ class PunkApiService
 
     /**
      * Returns all beers matching the supplied ID
+     * 
+     * @param int $id Find by record ID into Punk Api
+     * @return PunkApiResponse
      */
     public function getBeerById(int $id): PunkApiResponse
     {
@@ -45,6 +51,9 @@ class PunkApiService
 
     /**
      * Common endpoint call
+     * 
+     * @param string $method (GET, POST, UPDATE)
+     * @param string $urlParameters Url to call request
      */
     private function invokeCall(string $method, string $urlParameters): Response
     {
