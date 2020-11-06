@@ -31,7 +31,8 @@ class SearchStringAPIRequest extends BaseAPIRequest
     public function all($keys = null) 
     {
         $data = parent::all($keys);
-        $data['word'] = $this->route('word');
+        $data['word'] = str_replace(" ", "_", $this->route('word'));
+
         return $data;
     }
 }
