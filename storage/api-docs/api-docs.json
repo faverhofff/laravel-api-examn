@@ -1,0 +1,86 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Punker API Controller",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/search/{word}": {
+            "get": {
+                "tags": [
+                    "search"
+                ],
+                "summary": "Search by word",
+                "description": "Search beer that match with word",
+                "operationId": "search",
+                "parameters": [
+                    {
+                        "name": "word",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Invalid phrase",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": ""
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/get/id/{id}": {
+            "get": {
+                "tags": [
+                    "search"
+                ],
+                "summary": "Get beer by id",
+                "description": "Search beer that match with id request",
+                "operationId": "search",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Invalid id",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "sucess": {
+                                            "type": "boolean",
+                                            "example": "false"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "{ id: [The id must be a number.] }"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
