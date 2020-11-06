@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class PunkApiResponse
+ *
  * @package App\Models
  * @version November 5, 2020, 1:35 pm UTC
  *
@@ -15,10 +16,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class PunkApiResponse
 {
-    /** @var */
+    /**
+     * 
+     *
+     * @var 
+     */
     private $codeResult;
 
-    /** @var */
+    /**
+     * 
+     *
+     * @var 
+     */
     private  $bodyContent;
 
     /**
