@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * PHP version 7
+ * 
+ * @category Exam
+ * @package  App_Http_Controllers
+ * @author   Frank A.R <festgarcia2018@gmail.com.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://localhost/
+ */
+
 namespace App\Http\Controllers;
 
 use InfyOm\Generator\Utils\ResponseUtil;
@@ -8,7 +18,7 @@ use Response;
 /**
  * @SWG\Swagger(
  *   basePath="/api/v1",
- *   @SWG\Info(
+ * @SWG\Info(
  *     title="Laravel Generator APIs",
  *     version="1.0.0",
  *   )
@@ -18,29 +28,42 @@ use Response;
  */
 class AppBaseController extends Controller
 {
+    /**
+     * 
+     */
     public function sendResponse($result, $message)
     {
         return Response::json(ResponseUtil::makeResponse($message, $result));
     }
 
+    /**
+     * 
+     */
     public function sendError($error, $code = 404)
     {
         return Response::json(ResponseUtil::makeError($error), $code);
     }
 
+    /**
+     * 
+     */
     public function sendSuccess($message)
     {
-        return Response::json([
+        return Response::json(
+            [
             'success' => true,
             'message' => $message
-        ], 200);
+            ], 200
+        );
     }
 
     public function send($message, $errorCode)
     {
-        return Response::json([
+        return Response::json(
+            [
             'success' => true,
             'data' => $message
-        ], $errorCode);
+            ], $errorCode
+        );
     }
 }
