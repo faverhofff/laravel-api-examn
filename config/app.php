@@ -164,6 +164,7 @@ return [
 
         App\Providers\GuzzleServiceProvider::class,
         App\Providers\DomainServiceProvider::class,
+        L5Swagger\L5SwaggerServiceProvider::class,
 
         /*
          * Package Service Providers...
