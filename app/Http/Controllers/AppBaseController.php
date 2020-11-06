@@ -29,7 +29,10 @@ use Response;
 class AppBaseController extends Controller
 {
     /**
+     * Send response in json fromat
      * 
+     * @param array $result Object array
+     * @param string $message Message
      */
     public function sendResponse($result, $message)
     {
@@ -37,7 +40,10 @@ class AppBaseController extends Controller
     }
 
     /**
+     * Send response in json fromat with error http code status
      * 
+     * @param string $error Message
+     * @param int $code Http code status
      */
     public function sendError($error, $code = 404)
     {
@@ -45,7 +51,10 @@ class AppBaseController extends Controller
     }
 
     /**
+     * Send custom message in json format
+     * as a 200 code status
      * 
+     * @param string $message
      */
     public function sendSuccess($message)
     {
