@@ -4,7 +4,8 @@ use Illuminate\Support\ServiceProvider;
 use GuzzleHttp\Client;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
 
-class GuzzleServiceProvider extends ServiceProvider {
+class GuzzleServiceProvider extends ServiceProvider
+{
 
     /**
      * Bootstrap the application services.
@@ -24,9 +25,11 @@ class GuzzleServiceProvider extends ServiceProvider {
     public function register()
     {
         //
-        $this->app->bind('Client', function () {
-            return new Client;
-        });
+        $this->app->bind(
+            'Client', function () {
+                return new Client;
+            }
+        );
     }
 
 }
