@@ -162,6 +162,10 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        App\Providers\GuzzleServiceProvider::class,
+        App\Providers\DomainServiceProvider::class,
+        L5Swagger\L5SwaggerServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
