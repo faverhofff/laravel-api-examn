@@ -12,10 +12,29 @@ class FilterProductService {
      * Select from result just the fields
      * ['id', 'name', 'description']
      */
-    public function showSummaryDetail($arrayPunkApiModel)
+    public function getSummary($arrayPunkApiModel)
     {
-        return collect($arrayPunkApiModel)->map( function($row) {
-            return Arr::only($row, ['id', 'name', 'description']);
+        return $this->filterArray($arrayPunkApiModel, ['id', 'name', 'description']);
+    }
+
+    /**
+     * Select from result just the fields
+     * ['id', 'name', 'description']
+     */
+    public function getDetail($arrayPunkApiModel)
+    {
+        $fields = ['id', 'name', 'description', 'image_url', 'tagline', 'first_brewed'];
+
+        return $this->filterArray($arrayPunkApiModel, $fields);
+    }
+
+    /**
+     * 
+     */
+    private function filterArray(array $arrayData, array $fieldsToShow)
+    {
+        return collect($arrayData)->map( function($row) use ($fieldsToShow) {
+            return Arr::only($row, $fieldsToShow);
         });
     }
 
