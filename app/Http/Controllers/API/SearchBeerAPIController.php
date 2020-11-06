@@ -40,12 +40,11 @@ class SearchBeerAPIController extends AppBaseController
     {   
         $response = $this->apiService->searchBeersByWord($request->word);
 
-        $filteredResult = $this->filterService->showSummaryDetail($response->getArrayModel());
+        $filteredResult = $this->filterService->getSummary($response->getArrayModel());
 
         return $this->send($filteredResult, $response->getCode());
     }
     
-
     /**
      * Display result of id search.
      * GET|HEAD /get/id/{id}
@@ -57,7 +56,7 @@ class SearchBeerAPIController extends AppBaseController
     {   
         $response = $this->apiService->getBeerById($request->id);
         
-        $filteredResult = $this->filterService->showSummaryDetail($response->getArrayModel());
+        $filteredResult = $this->filterService->getDetail($response->getArrayModel());
 
         return $this->send($filteredResult, $response->getCode());
     }
